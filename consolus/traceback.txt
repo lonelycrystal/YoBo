@@ -1,0 +1,44 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 451, in script call
+    "Доска заданий находится в правом верхнем углу. Иногда проверяй её, чтобы продвигаться дальше"
+  File "game/screnmine.rpy", line 16, in script call
+    "Добро пожаловать на доску заданий"
+  File "game/screnmine.rpy", line 16, in script call
+    "Добро пожаловать на доску заданий"
+  File "game/screnmine.rpy", line 16, in script call
+    "Добро пожаловать на доску заданий"
+  [Previous line repeated 2 more times]
+  File "game/script.rpy", line 458, in script call
+    $ commtemp = renpy.input("Введите команду, или {a=jump:vipoln}нажмите для продолжения{/a}. Введено [countcom] команд в последовательности.")
+  File "game/screnmine.rpy", line 28, in script
+    jump home2
+ScriptError: could not find label 'home2'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 451, in script call
+    "Доска заданий находится в правом верхнем углу. Иногда проверяй её, чтобы продвигаться дальше"
+  File "game/screnmine.rpy", line 16, in script call
+    "Добро пожаловать на доску заданий"
+  File "game/screnmine.rpy", line 16, in script call
+    "Добро пожаловать на доску заданий"
+  File "game/screnmine.rpy", line 16, in script call
+    "Добро пожаловать на доску заданий"
+  [Previous line repeated 2 more times]
+  File "game/script.rpy", line 458, in script call
+    $ commtemp = renpy.input("Введите команду, или {a=jump:vipoln}нажмите для продолжения{/a}. Введено [countcom] команд в последовательности.")
+  File "game/screnmine.rpy", line 28, in script
+    jump home2
+  File "C:\Users\admin\Desktop\renpy-8.0.3-sdk\renpy\ast.py", line 1974, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Users\admin\Desktop\renpy-8.0.3-sdk\renpy\script.py", line 927, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'home2'.
+
+Windows-10-10.0.19044 AMD64
+Ren'Py 8.0.3.22090809
+consolus. beta 0.4.5
+Thu Feb  9 13:42:21 2023

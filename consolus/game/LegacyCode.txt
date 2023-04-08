@@ -1,0 +1,85 @@
+98123866541.8641
+97856354
+"
+elif code1:
+    if commtemp == "sudo ping":
+        $ comms.append("ping")
+        $ code2 = True
+        jump posled
+    if commtemp == "sudo netdiscover":
+        $ comms.append("netdis")
+        $ code2 = True
+        jump posled
+    else:
+        "Команда введена неверно"
+        jump posled
+elif code2:
+    if commtemp == "sudo ping":
+        $ comms.append("ping")
+        $ code3 = True
+        jump posled
+    if commtemp == "sudo netdiscover":
+        $ comms.append("netdis")
+        $ code3 = True
+        jump posled
+    else:
+        "Команда введена неверно"
+        jump posled
+elif code3:
+    if commtemp == "sudo ping":
+        $ comms.append("ping")
+        $ code4 = True
+        jump posled
+    if commtemp == "sudo netdiscover":
+        $ comms.append("netdis")
+        $ code4 = True
+        jump posled
+    else:
+        "Команда введена неверно"
+        jump posled
+elif code4:
+    if commtemp == "sudo ping":
+        $ comms.append("ping")
+        $ code5 = True
+        jump posled
+    if commtemp == "sudo netdiscover":
+        $ comms.append("netdis")
+        $ code5 = True
+        jump posled
+    else:
+        "Команда введена неверно"
+        jump posled
+elif code5:
+    "Очередь команд заполнена. {a=jump:vipoln}Продолжить{/a}"
+    "..."
+    jump posled
+
+$ code2 = False
+$ code3 = False
+$ code4 = False
+$ code5 = False
+"
+if code2:
+    $ timedcount = 1
+    "Следующая команда"
+    call comlinecon
+    if code3:
+        $ timedcount = 2
+        "Следующая команда"
+        call comlinecon
+        if code4:
+            $ timedcount = 3
+            "Следующая команда"
+            call comlinecon
+            if code5:
+                $ timedcount = 4
+                "Следующая команда"
+                call comlinecon
+
+if went1:
+    return 0
+else:
+    $ went1 = True
+    play sound "audio/Sounds/questup.mp3" noloop
+    dkzadan "Задание 1 выполнено. Проверьте доску заданий"
+    return 0

@@ -1,0 +1,512 @@
+label meta:
+    define gg = Character("[name]", color="#ffffff")
+    define debug_mode = True
+    define gg2 = Character("Мысли", color="#cccccc")
+    define satan = Character("Сатана", color="#ff0000")
+    define Система = Character("Система", color="#ffc7c7")
+    define me = Character("Создатель", color="#0000ff")
+    define tony = Character("Тони", color="#a40000")
+    define money = 0
+    define numin = 0
+    define L = Character("L", color="#8a0000")
+    define gala = Character("GaL'Ya", color="#ffff00")
+    define dkzadan = Character("Доска заданий", color="#00ffff")
+    define went1 = False
+    define timedcount = 0
+    define temp1 = 0
+    define temp2 = "null"
+    define comms  = []
+    define commline = "chumba"
+    define countcomms = 1
+    define ipad = "none"
+    define commtemp = "chumba"
+    define q11done = False
+    define q12done = False
+    define q1done = False
+    define doneone = False
+    define zad1done = False
+    init python:
+        renpy.music.register_channel("offfx1", "sfx", True)
+        renpy.music.register_channel("keyfx2", "sfx", True)
+        renpy.music.register_channel("wayhomefx", "sfx", True)
+        renpy.music.register_channel("homefx1", "sfx", True)
+        renpy.music.register_channel("homefx2", "sfx", True)
+        renpy.music.register_channel("galina", "voice", True)
+        #define help = Character("Подсказки", color="#2bb539")
+
+label start:
+    stop music fadeout 1.0
+    python:
+        name = renpy.input("Как вас зовут?(Оставьте поле пустым для \"Святогор\")")
+        name = name.strip() or "Святогор"
+    if debug_mode:
+        menu:
+            "debug"
+            "Переход к заданию":
+                jump storyline1zad
+            "Начало истории":
+                jump aboba
+    "Вы можете настроить громкость в настройках(Кнопка снизу экрана)"
+    "Совет на миллион. Сохраняйтесь чащеи идите нахуй(Кнопка внизу экрана)"
+    "В игре существуют пасхалки. Попробуйте найти их все)"
+    "Советую не выключать звуки. В игре присутствует озвучка, в некоторых моментах присутствуют мемы"
+
+label aboba:
+    queue music ['audio/Music/office1.mp3', 'audio/Music/office2.mp3', 'audio/Music/office3.mp3'] loop
+    play offfx1 "audio/Sounds/office1.mp3" loop
+    play keyfx2 "audio/Sounds/keyboard.mp3" loop
+    scene bg work room
+    with dissolve
+    gg2 "Меня зовут [name], мне 24 года"
+    gg2 "Мой дом находится в северо-восточной части Рубцовска, где расположены все виллы"
+    gg2 "Я не женат. Работаю сисадмином в маленьком офисе и прихожу домой не позднее 8 вечера"
+    gg2 "Я ложусь спать в 11 вечера, и убеждаюсь, что я получаю ровно восемь часов сна, несмотря ни на что"
+    gg2 "Выпив стакан теплого молока и потянувшись минут двадцать перед сном, я обычно без проблем сплю до утра"
+    gg2 "Словно ребёнок я просыпаюсь утром без всякой усталости и стресса"
+    gg2 "На моём последнем осмотре мне сказали, что у меня нет никаких проблем со здоровьем"
+    gg2 "Я пытаюсь донести, что я обычный человек, который хочет жить спокойной жизнью."
+    gg2 "Я забочусь о том, чтобы не утруждать себя какими-либо врагами – победами и поражениями, которые могли бы потревожить мой сон."
+    gg2 "Вот как я отношусь к обществу, и я знаю, что это приносит мне счастье."
+    gg2 "Хотя, если бы мне пришлось сражаться, я бы никому не проиграл."
+    show dedula
+    with dissolve
+    tony "[name], тебе надо развеяться немного. Понимаю, деньги нужны, но это до добра точно не доведёт"
+    gg "Как-нибудь сходим, развлечемся. Но пока что мне нужны деньги"
+    tony "Ладно, тогда хотя бы не перетруждайся"
+    gg "Постараюсь"
+    tony "Перерыв заканчивается. Пошли работать"
+    hide dedula
+    with dissolve
+    gg2 "Так, что мне осталось сделать?"
+
+label wpl:
+    scene bg work pc
+    with dissolve
+    show sys talk
+    with dissolve
+    Система "[name], для завершения рабочего плана вам осталось выполнить пару простых заданий"
+    Система "Для начала войдите в свою учетную запись"
+    gg2 "Черт, пока кофе пил, пароль забыл"
+    gg2 "Помню, что были числа 5,2,78,3"
+    gg2 "Надо попробовать в порядке возрастания"
+
+label passman:
+    show sys talk
+    with dissolve
+    $ numin = renpy.input("5,2,78,3 в порядке возрастания.", allow='235786',)
+    $ numin = numin.strip() or "456"
+    if numin == "666":
+        jump satan1
+    if not numin == "23578":
+        show sys talk
+        Система "Пароль неверный."
+        jump passman
+    else:
+        scene bg work exel
+        with fade
+        Система "Пароль правильный. Приступим к работе"
+        jump wpl2
+
+label satan1:
+    hide sys
+    scene hell 1
+    with fade
+    show satan 1
+    with dissolve
+    satan "Не, братан, сюда тебе не надо точно"
+    jump wpl
+
+label wpl2:
+    $ numinp = renpy.random.randint(1,99999999)
+    scene bg work exel2
+    with dissolve
+    show sys talk
+    with dissolve
+    Система "Следущее задание от компании \"RuCapcha\""
+    Система "Для выполнения задания вам необходимо ввести число [numinp]"
+    $ numin2 = renpy.input("Для выполнения задания вам необходимо ввести число [numinp]")
+    $ numin2 = numin2.strip() or 456
+    $ numin22 = int(numin2)
+    if numin22 > numinp:
+        show sys talk
+        Система "Неправильно, попробуй ещё раз"
+        jump wpl2
+    if numin22 < numinp:
+        show sys talk
+        Система "Неправильно, попробуй ещё раз"
+        jump wpl2
+    jump wpl3
+
+label wpl3:
+    show sys talk
+    Система "Задача выполнена правильно. Переходим к последнему заданию"
+    gg "Урааааа, скоро домой"
+    show sys talk
+    Система "Последнее задание достаточно специфичное. Не то, чтобы это был наш профиль, но выбора у нас нет"
+    Система "Руководство сказало сделать, значит надо"
+    Система "Заданиие от школы с повышенным уклоном на нестандартное мышление"
+    Система "Необходимо ответить на загадки, которые сделали ученики. Начнём?"
+    gg "Что там может быть сложного? Школьники не придумают что-то нерешаемое"
+    Система "Я бы не недооценивала их. Их нестандартное мышление на совершенно другом уровне"
+    menu:
+        "Поехали":
+            jump wpl3yes
+        "Не поехали":
+            jump wpl3no
+
+label wpl3no:
+    show sys talk
+    Система "Извините, но данной квест линейный. Вам ПРИДЕТСЯ продолжить"
+    jump wpl4_1
+
+label wpl3yes:
+    show sys talk
+    Система "Тогда, продолжим."
+    jump wpl4_1
+
+label wpl4_1:
+    show sys talk
+    menu:
+        Система "Первый вопрос. Я могу быть в толпе, но всегда отличаюсь. Кто я?"
+        "Личность":
+            show sys talk
+            Система "Ответ правильный. Переходим к следующему вопросу"
+            jump wpl4_2
+        "Актер":
+            show sys talk
+            Система "Ответ неверный. Попробуй ещё раз"
+            jump wpl4_1
+        "Джокер":
+            show sys talk
+            Система "Ответ хороший, но неверный"
+            jump wpl4_1
+
+label wpl4_2:
+    show sys talk
+    menu:
+        Система "Второй вопрос. С тобой я с первого дня и здесь, пока ты дышишь. Что я такое?"
+        "Воздух":
+            show sys talk
+            Система "Ответ неверный. Попробуй ещё раз"
+            jump wpl4_2
+        "Надежда":
+            show sys talk
+            Система "Ответ неверный. Попробуй ещё раз"
+            jump wpl4_2
+        "Отражение":
+            show sys talk
+            Система "Ответ правильный. Переходим к следующему вопросу"
+            jump wpl4_3
+
+label wpl4_3:
+    show sys talk
+    menu:
+        Система "Третий вопрос. Меня не купить, но можно украсть за миг. Ни к чему одному, но для двух бесценна. Что я?"
+        "Бриллианты":
+            show sys talk
+            Система "Ответ близок к истине, но неверно"
+            jump wpl4_3
+        "Время":
+            show sys talk
+            Система "Ответ неверный. Попробуй ещё раз"
+            jump wpl4_3
+        "Любовь":
+            show sys talk
+            Система "Ответ правильный. Задача выполнена. Поздравляю"
+            jump wrkdn
+
+label wrkdn:
+    scene bg work pc
+    with dissolve
+    show sys talk
+    with dissolve
+    Система "Работа закончена, вам начислено 2000 рублей на счет"
+    $renpy.notify("+2000 Рублей")
+    $money = money + 2000
+    play wayhomefx "audio/Sounds/moneyget.mp3" noloop
+    gg2 "Даааа, с такими успехами счета не оплатить..."
+    gg "Пора домой"
+    hide sys
+
+label onwayhome:
+    stop offfx1 fadeout 1.0
+    stop keyfx2 fadeout 1.0
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+    play wayhomefx "audio/Sounds/street1.mp3" loop
+    scene way home 1
+    with dissolve
+    ""
+    scene way home 2
+    with dissolve
+    ""
+    play wayhomefx "audio/Sounds/bus1.mp3" loop
+    scene way home 3
+    with dissolve
+    ""
+    gg2 "Надо будет посмотреть вакансии"
+    gg2 "Вроде видел на Явито, в ТынДекс принимали программистов"
+    gg2 "Надеюсь, требования не самые большие"
+    play wayhomefx "audio/Sounds/bus2.mp3" noloop
+    scene way home 4
+    with dissolve
+    ""
+    play wayhomefx "audio/Sounds/padik.mp3" noloop
+    scene way home 5
+    with dissolve
+    ""
+
+label home:
+    play wayhomefx "audio/Sounds/door.mp3" noloop
+    scene home door
+    with dissolve
+    gg "Home, sweet, home..."
+    gg "GaL'Ya, Не спишь?"
+    play galina "audio/Voice/losOS/vsegdakuslugam.mp3" noloop
+    gala "Всегда к вашим услугам, сэр"
+    gg "Освети комнату"
+    scene home light
+    play galina "audio/Voice/losOS/sdelano.mp3" noloop
+    gala "Сделано, сэр"
+    gg "Давай музычку послушаем. Включи плейлист для дома"
+    queue music ['audio/Music/Homemusic/music1.mp3', 'audio/Music/Homemusic/music2.mp3', 'audio/Music/Homemusic/music3.mp3'] fadein 1.0 loop
+    play galina "audio/Voice/losOS/godidea.mp3" noloop
+    gala "Хорошая идея, сэр"
+    menu:
+        gg "Хотя..."
+        "Оставить музыку":
+            gg "Да, пускай играет"
+        "Выключить музыку":
+            gg "Знаешь, давай лучше посидим в тишине. Нужно собраться с мыслями"
+            stop music fadeout 1.0
+            play galina "audio/Voice/losOS/ponimayu.mp3" noloop
+            gala "Хорошо, сэр. Понимаю"
+            play galina "audio/Voice/losOS/badday.mp3" noloop
+            gala "Был тяжелый день?"
+            gg "Да нет, день неособо тяжелый, просто устал"
+    gg "Дааа, не зря я тебя создал, GaL'Ya, многие вещи упрощаются"
+    play galina "audio/Voice/losOS/mnogoe.mp3" noloop
+    gala "Я ещё несовершенна, но уже могу многое)"
+    gg "Ты уже умеешь улыбаться?"
+    gg2 "Вроде, простой искусственный интеллект, а уже умеет немного выражать эмоции"
+    play galina "audio/Voice/losOS/vacation.mp3" noloop
+    gala "Сэр, помните те вакансии, на которые вы попросили меня откликнуться?"
+    gg "Да, припоминаю"
+    play galina "audio/Voice/losOS/tyndeks.mp3" noloop
+    gala "Ответила только одна компания. ТынДекс"
+    play galina "audio/Sounds/laydivan.mp3" noloop
+    scene home pc work
+    with dissolve
+    gg2 "Опаньки, а это уже интересно"
+    play galina "audio/Voice/losOS/trebovaniya.mp3" noloop
+    gala "Насколько я знаю, требования там не самые большие, зарплата приличная"
+    play galina "audio/Voice/losOS/scheta.mp3" noloop
+    gala "С такой зарплатой будет хватать и на жизнь и на оплату больничных счетов матери"
+    gg "Давай посмотрим, что там такое"
+    "..."
+    gg "А ведь действительно, неплохая вакансия"
+    play galina "audio/Voice/losOS/testy.mp3" noloop
+    gala "Как я и сказала, ответ уже пришёл. Как я поняла, вам необходимо пройти небольшое тестирование"
+    scene later later with Dissolve(1.0)
+    pause 2.0
+    scene home pc work with Dissolve(1.0)
+    gg "Ну что, GaL'Ya, как думаешь, возьмут или нет?"
+    play galina "audio/Voice/losOS/otvety.mp3" noloop
+    gala "Моя помощь почти не требовалась, всё должно быть правильно"
+    play homefx1 "audio/Sounds/mailbox.mp3" noloop
+    gg "Оперативненько..."
+    gg2 "Ну что, поехали"
+    play homefx1 "audio/Sounds/mousedouble.mp3" noloop
+    pause 0.5
+    scene home pc workdob
+    with dissolve
+    gg "..."
+    gg "Вы не приняты..."
+    play galina "audio/Voice/losOS/poterano.mp3" noloop
+    gala "Не расстраивайтесь, сэр. Вы сможете найти хорошую работу. Ещё не всё потеряно"
+    play homefx1 "audio/Sounds/laydivan.mp3" noloop
+    scene potolok
+    with dissolve
+    gg "GaLYa, без звука"
+    stop music fadeout 1.0
+    stop homefx1 fadeout 1.0
+    stop homefx2 fadeout 1.0
+    stop wayhomefx fadeout 1.0
+    gg "Лучше уж просто на диванчике поляжу, в телефон позалипаю"
+
+    show phone yt
+    with dissolve
+    gg2 "Ютуб...ничего нового"
+    show phone tt
+    with dissolve
+    gg2 "В тикитоке скучно"
+    show phone mul
+    with dissolve
+    play homefx2 "audio/Sounds/message.mp3" noloop
+    "..."
+    gg2 "Опа, кто-то написал в телеге"
+    gg2 "Надо посмотреть"
+    show phone one
+    with dissolve
+    gg2 "Кто такой L?"
+    L "Здравствуй, [name]"
+    gg "Откуда ты знаешь мое имя?"
+    L "Я много знаю, [name]"
+    L "Например то, что у тебя есть спецефический набор навыков"
+    L "А тебе явно нужны деньги"
+    gg2 "ОТКУДА ОН УЗНАЛ???"
+    L "Тебе ведь надо оплатить больничные счета"
+    L "Я предлагаю тебе работу. Выполнишь задание - получишь гонорар"
+    gg "Не-не-не-не, легкие деньги не интересуют"
+    L "Не переживай, я не за этим тебе написал"
+    gg "Раз уж дела обстоят так, рассказывай"
+    L "Не торопись, молодой. Сначала пробное задание выполни, а там посмотрим"
+    gg "Ну давай, попробую"
+    L "Для начала проверь соединение с сервером 192.168.102.9"
+    show screen blocknote
+    with dissolve
+    "Подсказки к командам находятся в правом верхнем углу"
+    gg "Ну ладно, попробуем"
+
+label com1:
+    play homefx1 "audio/Sounds/laydivan.mp3" noloop
+    hide phone
+    with dissolve
+    scene home work cons
+    with dissolve
+    $ commline = renpy.input("Проверить соединение с сервером 192.168.102.9")
+    $ commline = commline.strip() or "chumba"
+    if not commline == "sudo netping":
+        "Команда введена неверно."
+        jump com1
+
+    else:
+        $ ipad = renpy.input("Введите ip адрес")
+        $ ipad = ipad.strip() or "none"
+        if not ipad == "192.168.102.9":
+            "IP-адрес недоступен"
+            jump com1
+        else:
+            $ temp1 = renpy.random.randint(100,500)
+            $ temp11 = int(temp1)
+            $ temp2 = renpy.random.randint(100,500)
+            $ temp22 = int(temp2)
+            $ temp3 = renpy.random.randint(100,500)
+            $ temp33 = int(temp3)
+            $ temp4 = renpy.random.randint(100,500)
+            $ temp44 = int(temp4)
+            $ netpingmin = min(temp11, temp22, temp33, temp44)
+            $ netpingmax = max(temp11, temp22, temp33, temp44)
+            $ temp5 = (temp11 + temp22)
+            $ temp5 = (temp5 + temp33)
+            $ temp5 = (temp5 + temp44)
+            $ netpingmid = temp5/4
+            "Обмен пакетами от 192.168.102.9: число байт=32 время=[temp1] TTL=50"
+            "Обмен пакетами от 192.168.102.9: число байт=32 время=[temp2] TTL=50"
+            "Обмен пакетами от 192.168.102.9: число байт=32 время=[temp3] TTL=50"
+            "Обмен пакетами от 192.168.102.9: число байт=32 время=[temp4] TTL=50"
+            "Статистика netping для 192.168.102.9: Пакетов: отправлено = 4, получено = 4, потеряно = 0 (0\% потерь)"
+            "Приблизительное время приема-передачи в мс: Минимальное = [netpingmin]мсек, Максимальное = [netpingmax]мсек, Среднее = [netpingmid]мсек"
+            play sound "audio/Sounds/questup.mp3" noloop
+    dkzadan "Задание выполнено."
+    L "Отлично. Тест выполнен. Поздравляю"
+    L "Я думаю, ты уже видел, что в файле \"Command guide\" не только одна команда"
+
+    gg "Получается, денег я пока не получу?"
+    #show money100
+    $renpy.notify("+100 Рублей")
+    $money = money + 100
+    play wayhomefx "audio/Sounds/moneyget.mp3" noloop
+    L "Пока ты ничего не сделал, так что работай. Хотя первый тест ты пройти смог. Небольшое поощрение заслужил."
+
+label com2:
+    L "Итак, перейдём к следующей команде"
+    L "В прошлый раз айпишник я тебе дал. Но это был заведомо известный. Обычно его узнают при помощи других команд"
+    L "В нашем случае будет команда netdiscover"
+    L "Она поможет просканировать сеть на доступность IP - адресов"
+    L "Эта команда тоже находится в справочнике(Книжечка в правом верхнем углу)"
+    $ commtemp = renpy.input("Введите команду")
+    $ commtemp = commtemp.strip() or "chumba"
+    if not commtemp == "sudo netdiscover":
+        "Команда введена неверно"
+        jump com2
+    else:
+        "sudo netdiscover"
+        "192.168.100.1 08:00:27:3b:8f:ed 1 60 PCS Systemtechnik GmbH
+        192.168.102.9 08:00:27:fe:31:e6 1 60 PCS Systemtechnik GmbH
+        231.235.55.1 24:11:64:5a:54:e2 1 60 PCS Systemtechnik GmbH"
+        play sound "audio/Sounds/questup.mp3" noloop
+        dkzadan "Задание выполнено."
+    L "Как ты мог заметить, в данный момент для тебя доступны три IP - Адреса"
+    L "Первый (192.168.100.1) - это твой локальный адрес. Его задаёт твой роутер."
+    L "Хотя, иногда пользователь может задать его сам. Но это необязательно"
+    L "Два других - айпишники других устройств, доступных тебе для \"Исследования\""
+    gg "Пока всё понятно. Что нужно делать дальше"
+    $renpy.notify("+100 Рублей")
+    $money = money + 100
+    play wayhomefx "audio/Sounds/moneyget.mp3" noloop
+    L "Во-первых, тебе на счёт должно было прийти очередное поощрение"
+    L "Во-вторых, так как я человек занятой, я заранее подготовил тебе парочку заданий, чтобы ты без дела не сидел"
+    show screen dkda
+    "Доска заданий находится в правом верхнем углу. Иногда проверяй её, чтобы продвигаться дальше"
+    L "Также немного упрощу тебе работу. У тебя должна была появиться программа для последовательного ввода команд"
+    $ comms = []
+
+label posled:
+    scene home work cons
+    with dissolve
+    show screen blocknote
+    with dissolve
+    show screen dkda
+    with dissolve
+    $ countcom = len(comms)
+    if len(comms) < 5:
+        $ commtemp = renpy.input("Введите команду, или {a=jump:vipoln}нажмите для продолжения{/a}. Введено [countcom] команд в последовательности.")
+        $ commtemp = commtemp.strip() or "chumba"
+        if commtemp == "sudo netping":
+            $ comms.append("netping")
+            jump posled
+        if commtemp == "sudo netdiscover":
+            $ comms.append("netdis")
+            jump posled
+        else:
+            "Команда введена неверно"
+            jump posled
+    else:
+        "Очередь заполнена. {a=jump:vipoln}Продолжить?{/a}"
+        "..."
+        jump posled
+
+label vipoln:
+    if countcomms < len(comms):
+        "Приступаю к выполнению"
+        call comlinecon from _call_comlinecon
+        $ countcomms = countcomms + 1
+        $ timedcount = timedcount + 1
+        jump vipoln
+
+    else:
+        python:
+            countcomms = 0
+            comms = []
+            timedcount = 0
+        "Очередь выполнена"
+        if went1 == False:
+            if q1done == True:
+                $ went1 = True
+                play sound "audio/Sounds/questup.mp3" noloop
+                dkzadan "Задание 1 выполнено. Проверьте доску заданий"
+        jump posled
+
+label comlinecon:
+    if comms[timedcount] == "netping":
+        call p from _call_p
+    elif comms[timedcount] == "netdis":
+        call netdis from _call_netdis
+    return 0
+
+label beta:
+    me "Прошу прощения, но дальше нет истории"
+    me "Прокрутите колесико назад немного"
+
+return
